@@ -11,6 +11,7 @@ import {
   SquareCode,
   Split,
   Shield,
+  Braces,
 } from "lucide-react";
 
 export interface Topic {
@@ -33,6 +34,7 @@ export const iconMap = {
   SquareCode,
   Split,
   Shield,
+  Braces,
 };
 
 export const topics: Topic[] = [
@@ -1200,6 +1202,351 @@ export default function PhotoPage({ params }: { params: { id: string } }) {
         <li>商品快速预览</li>
         <li>通知中心展开</li>
       </ul>
+    `,
+  },
+  {
+    id: 12,
+    title: "API 接口开发",
+    icon: "Braces",
+    content: `
+      <h2 class="text-2xl font-bold mb-4">10. API 接口开发</h2>
+      <p class="text-slate-600 mb-6">Next.js 不仅可以渲染页面，还能在同一项目中编写后端 API 接口。这样前后端代码共享同一技术栈，极大简化全栈开发。</p>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">App Router 中的 Route Handlers</h3>
+      <p class="text-slate-600 mb-3">App Router 推荐使用 <code class="bg-slate-100 px-1 rounded">route.ts</code> 文件来定义 API 端点。将文件放在 <code class="bg-slate-100 px-1 rounded">route.ts</code>（或 <code class="bg-slate-100 px-1 rounded">route.js</code>）中，即可对外暴露 HTTP 接口：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto"><code>// app/api/users/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+// GET /api/users
+export async function GET() {
+  const users = [
+    { id: 1, name: '张三', email: 'zhangsan@example.com' },
+    { id: 2, name: '李四', email: 'lisi@example.com' },
+  ];
+
+  return NextResponse.json({ users });
+}
+
+// POST /api/users
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+
+  // 模拟创建用户
+  const newUser = {
+    id: Date.now(),
+    name: body.name,
+    email: body.email,
+  };
+
+  return NextResponse.json(
+    { user: newUser, message: '创建成功' },
+    { status: 201 }
+  );
+}</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">支持的 HTTP 方法</h3>
+      <p class="text-slate-600 mb-3">在 <code class="bg-slate-100 px-1 rounded">route.ts</code> 中导出对应名称的函数，即可处理对应的 HTTP 请求：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto"><code>// app/api/products/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET() {
+  return NextResponse.json({ method: 'GET' });
+}
+
+export async function POST(request: NextRequest) {
+  const data = await request.json();
+  return NextResponse.json({ method: 'POST', data });
+}
+
+export async function PUT(request: NextRequest) {
+  const data = await request.json();
+  return NextResponse.json({ method: 'PUT', data });
+}
+
+export async function DELETE(request: NextRequest) {
+  return NextResponse.json({ method: 'DELETE' });
+}
+
+export async function PATCH(request: NextRequest) {
+  const data = await request.json();
+  return NextResponse.json({ method: 'PATCH', data });
+}</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">动态路由参数</h3>
+      <p class="text-slate-600 mb-3">和页面动态路由一样，API 也可以接收动态参数，用于获取/操作单个资源：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto"><code>// app/api/users/[id]/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+type Props = {
+  params: Promise&lt;{ id: string }&gt;;
+};
+
+// GET /api/users/123 → 获取单个用户
+export async function GET(_request: NextRequest, { params }: Props) {
+  const { id } = await params;
+
+  // 模拟从数据库查询
+  const user = await db.user.findById(id);
+
+  if (!user) {
+    return NextResponse.json(
+      { error: '用户不存在' },
+      { status: 404 }
+    );
+  }
+
+  return NextResponse.json({ user });
+}
+
+// PUT /api/users/123 → 更新用户
+export async function PUT(request: NextRequest, { params }: Props) {
+  const { id } = await params;
+  const body = await request.json();
+
+  const updatedUser = await db.user.update(id, body);
+
+  return NextResponse.json({ user: updatedUser });
+}
+
+// DELETE /api/users/123 → 删除用户
+export async function DELETE(_request: NextRequest, { params }: Props) {
+  const { id } = await params;
+
+  await db.user.delete(id);
+
+  return NextResponse.json(
+    { message: '删除成功' },
+    { status: 200 }
+  );
+}</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">查询参数与请求头</h3>
+      <p class="text-slate-600 mb-3">通过 <code class="bg-slate-100 px-1 rounded">NextRequest</code> 对象可以获取 URL 查询参数和请求头信息：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto"><code>// app/api/search/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(request: NextRequest) {
+  // 获取查询参数
+  // 例如请求：/api/search?keyword=next&page=1&limit=10
+  const searchParams = request.nextUrl.searchParams;
+  const keyword = searchParams.get('keyword');
+  const page = Number(searchParams.get('page') || '1');
+  const limit = Number(searchParams.get('limit') || '10');
+
+  // 获取请求头
+  const authHeader = request.headers.get('authorization');
+  const contentType = request.headers.get('content-type');
+
+  // 模拟搜索
+  const results = await db.search({ keyword, page, limit });
+
+  return NextResponse.json({
+    keyword,
+    page,
+    limit,
+    total: results.total,
+    data: results.items,
+  });
+}</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">文件上传处理</h3>
+      <p class="text-slate-600 mb-3">Next.js API Route 可以处理文件上传，配合 <code class="bg-slate-100 px-1 rounded">FormData</code> 解析请求：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto"><code>// app/api/upload/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(request: NextRequest) {
+  const formData = await request.formData();
+  const file = formData.get('file') as File;
+
+  if (!file) {
+    return NextResponse.json(
+      { error: '未提供文件' },
+      { status: 400 }
+    );
+  }
+
+  // 读取文件内容
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+
+  // 保存到本地或上传到云存储
+  // await writeFile('./uploads/' + file.name, buffer);
+
+  return NextResponse.json({
+    message: '上传成功',
+    filename: file.name,
+    size: file.size,
+    type: file.type,
+  });
+}</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">与 Pages Router API Routes 的区别</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">特性</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">App Router (route.ts)</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">Pages Router (api/)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">文件位置</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded">app/api/xxx/route.ts</code></td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded">pages/api/xxx.ts</code></td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">请求对象</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded">NextRequest</code> (基于 Web API)</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded">NextApiRequest</code> (基于 Node.js)</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">响应对象</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded">NextResponse</code></td>
+              <td class="border border-slate-200 px-4 py-2">直接操作 <code class="bg-slate-100 px-1 rounded">res</code> 对象</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">Body 解析</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded">await request.json()</code></td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded">req.body</code>（自动解析）</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">推荐程度</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 推荐使用</td>
+              <td class="border border-slate-200 px-4 py-2">兼容旧项目</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">完整 CRUD 示例：待办事项 API</h3>
+      <p class="text-slate-600 mb-3">下面是一个完整的 RESTful API 示例，实现待办事项的增删改查：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto"><code>// app/api/todos/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+// 模拟内存数据库
+let todos = [
+  { id: 1, title: '学习 Next.js', completed: false },
+  { id: 2, title: '写 API 接口', completed: true },
+];
+
+// GET /api/todos
+export async function GET() {
+  return NextResponse.json({ todos });
+}
+
+// POST /api/todos
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+
+  const newTodo = {
+    id: Date.now(),
+    title: body.title,
+    completed: false,
+  };
+
+  todos.push(newTodo);
+
+  return NextResponse.json({ todo: newTodo }, { status: 201 });
+}
+
+// app/api/todos/[id]/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+type Props = {
+  params: Promise&lt;{ id: string }&gt;;
+};
+
+// PUT /api/todos/123
+export async function PUT(request: NextRequest, { params }: Props) {
+  const { id } = await params;
+  const body = await request.json();
+
+  const todoIndex = todos.findIndex(
+    (t) =&gt; t.id === Number(id)
+  );
+
+  if (todoIndex === -1) {
+    return NextResponse.json(
+      { error: '未找到' },
+      { status: 404 }
+    );
+  }
+
+  todos[todoIndex] = {
+    ...todos[todoIndex],
+    ...body,
+  };
+
+  return NextResponse.json({ todo: todos[todoIndex] });
+}
+
+// DELETE /api/todos/123
+export async function DELETE(_request: NextRequest, { params }: Props) {
+  const { id } = await params;
+
+  todos = todos.filter((t) =&gt; t.id !== Number(id));
+
+  return NextResponse.json({ message: '删除成功' });
+}</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">在 Server Component 中调用 API</h3>
+      <p class="text-slate-600 mb-3">虽然 Server Component 可以直接操作数据库，但有时也需要调用内部 API：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto"><code>// app/todos/page.tsx (Server Component)
+export default async function TodosPage() {
+  // 直接调用内部 API（服务端执行，不会发 HTTP 请求）
+  const res = await fetch(
+    'http://localhost:3000/api/todos',
+    { cache: 'no-store' }
+  );
+  const { todos } = await res.json();
+
+  return (
+    &lt;ul&gt;
+      {todos.map((todo) =&gt; (
+        &lt;li key={todo.id}&gt;
+          {todo.title} {todo.completed ? '✅' : '⬜'}
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">CORS 跨域配置</h3>
+      <p class="text-slate-600 mb-3">如果 API 需要被外部域名调用，需要配置 CORS：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto"><code>// app/api/external/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(request: NextRequest) {
+  const origin = request.headers.get('origin') || '';
+  const allowedOrigins = ['https://myapp.com', 'https://admin.myapp.com'];
+
+  const response = NextResponse.json({ data: 'Hello' });
+
+  if (allowedOrigins.includes(origin)) {
+    response.headers.set('Access-Control-Allow-Origin', origin);
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  }
+
+  return response;
+}
+
+// 处理 OPTIONS 预检请求
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204 });
+}</code></pre>
+
+      <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <h4 class="font-semibold text-blue-800 mb-2">💡 最佳实践</h4>
+        <ul class="list-disc pl-6 text-blue-700 space-y-1">
+          <li>优先在 Server Component 中直接操作数据库，减少内部 HTTP 调用</li>
+          <li>使用 <code class="bg-blue-100 px-1 rounded">route.ts</code> 处理所有 API 逻辑，保持前后端代码一致性</li>
+          <li>为 API 响应添加统一的错误处理和状态码</li>
+          <li>敏感操作（如删除）需要添加身份验证中间件</li>
+        </ul>
+      </div>
     `,
   },
 ];
