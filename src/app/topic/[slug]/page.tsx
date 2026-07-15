@@ -56,9 +56,11 @@ export default async function TopicPage({ params }: Props) {
               <IconComponent size={24} />
             </div>
             <div>
-              <div className="text-xs text-slate-400 font-mono">
-                第 {topic.id} 章
-              </div>
+              {topic.id >= 1 && (
+                <div className="text-xs text-slate-400 font-mono">
+                  第 {topic.id} 章
+                </div>
+              )}
               <h1 className="text-2xl font-bold text-slate-800">
                 {topic.title}
               </h1>

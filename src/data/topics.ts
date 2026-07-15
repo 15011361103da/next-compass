@@ -44,7 +44,40 @@ export const topics: Topic[] = [
     icon: "LayoutDashboard",
     content: `
       <h2 class="text-2xl font-bold mb-4">Next.js 核心大纲</h2>
-      <p class="text-slate-600 mb-6">本培训将带你系统掌握 Next.js 的核心概念与最佳实践。以下是本次培训的全部章节：</p>
+      <p class="text-slate-600 mb-4">本培训将带你系统掌握 Next.js 的核心概念与最佳实践。</p>
+
+      <div class="mb-6 p-5 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-xl">
+        <h3 class="text-lg font-semibold text-blue-800 mb-3">🚀 什么是 Next.js？</h3>
+        <p class="text-slate-600 mb-3">Next.js 是由 Vercel 团队开发的<strong>全栈 Web 开发框架</strong>，基于 React 构建。它将 React 的组件化开发模式扩展到了服务端，提供了开箱即用的生产级能力。</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+          <div class="flex items-start gap-2">
+            <span class="text-blue-500 mt-0.5">⚛️</span>
+            <span class="text-slate-600"><strong>基于 React</strong> — 支持 Server Component、Client Component，天然集成 React 生态</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-blue-500 mt-0.5">🔄</span>
+            <span class="text-slate-600"><strong>全栈开发</strong> — 前后端一体化，可在同一项目中编写页面和 API 接口</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-blue-500 mt-0.5">⚡</span>
+            <span class="text-slate-600"><strong>混合渲染</strong> — 支持 SSR / SSG / ISR / CSR，按页面粒度灵活选择渲染策略</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-blue-500 mt-0.5">📁</span>
+            <span class="text-slate-600"><strong>文件路由</strong> — 基于文件系统的约定式路由，文件夹即路由，直观易维护</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-blue-500 mt-0.5">🎯</span>
+            <span class="text-slate-600"><strong>TypeScript 优先</strong> — 内置 TypeScript 支持，提供完整的类型定义</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-blue-500 mt-0.5">🚀</span>
+            <span class="text-slate-600"><strong>零配置部署</strong> — 与 Vercel 深度集成，推送代码即可自动部署上线</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-lg font-semibold text-slate-800 mb-3">📚 培训章节</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="p-4 border border-slate-200 rounded-lg hover:border-blue-400 transition-colors">
           <h3 class="font-semibold text-slate-800">第一章：基础概念</h3>
@@ -88,13 +121,13 @@ export const topics: Topic[] = [
   },
   {
     id: 1,
-    title: "什么是 SSR?",
+    title: "混合渲染",
     icon: "Server",
     content: `
-      <h2 class="text-2xl font-bold mb-4">什么是 SSR？</h2>
-      <p class="text-slate-600 mb-4">SSR（Server-Side Rendering，服务端渲染）是指页面的 HTML 内容由服务器端生成，然后发送给客户端的技术。</p>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">CSR vs SSR vs SSG 对比</h3>
+      <h2 class="text-2xl font-bold mb-4">Next.js 混合渲染</h2>
+      <p class="text-slate-600 mb-4">Next.js 的<strong>混合渲染（Hybrid Rendering）</strong>是其核心竞争力之一。同一应用中可以根据不同页面的需求，灵活选择 SSR、SSG、ISR 或 CSR 四种渲染策略，实现性能与灵活性的最佳平衡。</p>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">CSR vs SSR vs SSG vs ISR 对比</h3>
       <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm border-collapse">
           <thead>
@@ -103,85 +136,260 @@ export const topics: Topic[] = [
               <th class="border border-slate-200 px-4 py-2 text-left">CSR (客户端渲染)</th>
               <th class="border border-slate-200 px-4 py-2 text-left">SSR (服务端渲染)</th>
               <th class="border border-slate-200 px-4 py-2 text-left">SSG (静态生成)</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">ISR (增量再生成)</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">渲染时机</td>
+              <td class="border border-slate-200 px-4 py-2">客户端运行时</td>
+              <td class="border border-slate-200 px-4 py-2">每次请求时</td>
+              <td class="border border-slate-200 px-4 py-2">构建时</td>
+              <td class="border border-slate-200 px-4 py-2">构建时 + 按需后台更新</td>
+            </tr>
             <tr>
               <td class="border border-slate-200 px-4 py-2 font-medium">首屏性能</td>
               <td class="border border-slate-200 px-4 py-2">慢</td>
               <td class="border border-slate-200 px-4 py-2">快</td>
               <td class="border border-slate-200 px-4 py-2">最快</td>
+              <td class="border border-slate-200 px-4 py-2">快（首次后等同 SSG）</td>
             </tr>
             <tr>
               <td class="border border-slate-200 px-4 py-2 font-medium">SEO 友好</td>
               <td class="border border-slate-200 px-4 py-2">差</td>
               <td class="border border-slate-200 px-4 py-2">好</td>
               <td class="border border-slate-200 px-4 py-2">最好</td>
+              <td class="border border-slate-200 px-4 py-2">好</td>
             </tr>
             <tr>
               <td class="border border-slate-200 px-4 py-2 font-medium">数据实时性</td>
               <td class="border border-slate-200 px-4 py-2">实时</td>
-              <td class="border border-slate-200 px-4 py-2">每次请求</td>
-              <td class="border border-slate-200 px-4 py-2">构建时</td>
+              <td class="border border-slate-200 px-4 py-2">每次请求最新</td>
+              <td class="border border-slate-200 px-4 py-2">构建时固定</td>
+              <td class="border border-slate-200 px-4 py-2">可配置 revalidate 间隔</td>
             </tr>
             <tr>
               <td class="border border-slate-200 px-4 py-2 font-medium">服务器压力</td>
-              <td class="border border-slate-200 px-4 py-2">小</td>
+              <td class="border border-slate-200 px-4 py-2">无</td>
               <td class="border border-slate-200 px-4 py-2">大</td>
               <td class="border border-slate-200 px-4 py-2">无</td>
+              <td class="border border-slate-200 px-4 py-2">低（仅在过期时重新生成）</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">适用场景</td>
+              <td class="border border-slate-200 px-4 py-2">后台管理系统、需要强交互的 SPA</td>
+              <td class="border border-slate-200 px-4 py-2">实时数据页面、个性化内容</td>
+              <td class="border border-slate-200 px-4 py-2">博客、文档、营销落地页</td>
+              <td class="border border-slate-200 px-4 py-2">电商商品页、内容需定期更新的站点</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h3 class="text-xl font-semibold mt-6 mb-3">Next.js 如何解决首屏加载与 SEO 问题</h3>
-      <p class="text-slate-600 mb-4">Next.js 默认在服务端渲染页面，生成完整的 HTML 后发送给浏览器，这样：</p>
+      <h3 class="text-xl font-semibold mt-6 mb-3">四种渲染模式详解</h3>
+      <div class="space-y-4">
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold text-blue-700 mb-2">🖥️ SSR — 服务端渲染</h4>
+          <p class="text-slate-600 text-sm mb-2">每次用户请求时，服务器动态生成完整 HTML 返回给客户端。适用于需要实时数据或个性化内容的页面。</p>
+          <pre class="bg-slate-900 text-white p-3 rounded text-xs overflow-x-auto"><code>// 设置 cache: 'no-store' 或 dynamic = 'force-dynamic' 即为 SSR
+const res = await fetch('https://api.example.com/data', {
+  cache: 'no-store',
+});</code></pre>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold text-green-700 mb-2">📄 SSG — 静态生成</h4>
+          <p class="text-slate-600 text-sm mb-2">在构建时预渲染所有页面为静态 HTML，访问时直接返回。性能最优，适合内容很少变化的页面。</p>
+          <pre class="bg-slate-900 text-white p-3 rounded text-xs overflow-x-auto"><code>// 默认行为就是静态生成，或显式声明
+export const dynamic = 'force-static';
+// 配合 generateStaticParams 预生成动态路由页面</code></pre>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold text-purple-700 mb-2">🔄 ISR — 增量静态再生成</h4>
+          <p class="text-slate-600 text-sm mb-2">在 SSG 基础上，设置过期时间后首次请求触发后台重新生成新页面。兼顾 SSG 的性能和动态数据更新。</p>
+          <pre class="bg-slate-900 text-white p-3 rounded text-xs overflow-x-auto"><code>// revalidate: 60 表示 60 秒后首次请求会触发重新生成
+const res = await fetch('https://api.example.com/data', {
+  next: { revalidate: 60 },
+});</code></pre>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold text-orange-700 mb-2">💻 CSR — 客户端渲染</h4>
+          <p class="text-slate-600 text-sm mb-2">页面在客户端通过 JavaScript 动态渲染。Next.js 中使用 'use client' 指令将组件标记为客户端组件。</p>
+          <pre class="bg-slate-900 text-white p-3 rounded text-xs overflow-x-auto"><code>'use client';
+// 此组件在客户端渲染，可使用 useState、useEffect 等
+import { useState, useEffect } from 'react';</code></pre>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">💻 客户端渲染（CSR）流程图</h3>
+      <p class="text-slate-600 mb-4">传统 SPA 的客户端渲染流程，从用户访问到页面可交互，需要经历多个串行步骤：</p>
+      <div class="overflow-x-auto mb-6">
+        <div class="flex items-start gap-0 min-w-[720px]">
+          <div class="flex flex-col items-center">
+            <div class="w-32 h-20 bg-red-50 border-2 border-red-200 rounded-lg flex flex-col items-center justify-center p-2 text-center">
+              <span class="text-lg">🌐</span>
+              <span class="text-xs font-semibold text-red-700">浏览器请求</span>
+            </div>
+            <span class="text-[10px] text-red-400 mt-1">请求 HTML</span>
+            <span class="text-slate-300 text-lg">↓</span>
+          </div>
+          <div class="flex items-center pt-8 mx-1">
+            <span class="text-slate-300 text-lg">→</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-32 h-20 bg-orange-50 border-2 border-orange-200 rounded-lg flex flex-col items-center justify-center p-2 text-center">
+              <span class="text-lg">📄</span>
+              <span class="text-xs font-semibold text-orange-700">空壳 HTML</span>
+            </div>
+            <span class="text-[10px] text-orange-400 mt-1">仅含 &lt;div id="root"&gt;</span>
+            <span class="text-slate-300 text-lg">↓</span>
+          </div>
+          <div class="flex items-center pt-8 mx-1">
+            <span class="text-slate-300 text-lg">→</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-32 h-20 bg-amber-50 border-2 border-amber-200 rounded-lg flex flex-col items-center justify-center p-2 text-center">
+              <span class="text-lg">📦</span>
+              <span class="text-xs font-semibold text-amber-700">下载 JS</span>
+            </div>
+            <span class="text-[10px] text-amber-400 mt-1">bundle 加载</span>
+            <span class="text-slate-300 text-lg">↓</span>
+          </div>
+          <div class="flex items-center pt-8 mx-1">
+            <span class="text-slate-300 text-lg">→</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-32 h-20 bg-yellow-50 border-2 border-yellow-200 rounded-lg flex flex-col items-center justify-center p-2 text-center">
+              <span class="text-lg">⚙️</span>
+              <span class="text-xs font-semibold text-yellow-700">执行 React</span>
+            </div>
+            <span class="text-[10px] text-yellow-400 mt-1">构建虚拟 DOM</span>
+            <span class="text-slate-300 text-lg">↓</span>
+          </div>
+          <div class="flex items-center pt-8 mx-1">
+            <span class="text-slate-300 text-lg">→</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-32 h-20 bg-blue-50 border-2 border-blue-200 rounded-lg flex flex-col items-center justify-center p-2 text-center">
+              <span class="text-lg">🔌</span>
+              <span class="text-xs font-semibold text-blue-700">请求 API</span>
+            </div>
+            <span class="text-[10px] text-blue-400 mt-1">获取数据</span>
+            <span class="text-slate-300 text-lg">↓</span>
+          </div>
+          <div class="flex items-center pt-8 mx-1">
+            <span class="text-slate-300 text-lg">→</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-32 h-20 bg-green-50 border-2 border-green-200 rounded-lg flex flex-col items-center justify-center p-2 text-center">
+              <span class="text-lg">✅</span>
+              <span class="text-xs font-semibold text-green-700">页面就绪</span>
+            </div>
+            <span class="text-[10px] text-green-400 mt-1">渲染完成</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">⚠️ 客户端渲染的弊端</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="p-4 border border-red-100 bg-red-50 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-2">🐢 白屏时间长</h4>
+          <p class="text-sm text-red-600">用户需等待 JS 下载、解析、执行完毕才能看到任何内容。网络慢或设备性能不足时，白屏可达数秒。</p>
+        </div>
+        <div class="p-4 border border-red-100 bg-red-50 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-2">🔍 SEO 不友好</h4>
+          <p class="text-sm text-red-600">搜索引擎爬虫抓取到的 HTML 几乎是空的，无法索引页面内容。虽然 Google 声称能执行 JS，但效果不稳定。</p>
+        </div>
+        <div class="p-4 border border-red-100 bg-red-50 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-2">📉 首屏性能差</h4>
+          <p class="text-sm text-red-600">FCP（首次内容绘制）和 LCP（最大内容绘制）远慢于 SSR/SSG，直接影响用户体验和 Core Web Vitals 评分。</p>
+        </div>
+        <div class="p-4 border border-red-100 bg-red-50 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-2">🔄 请求瀑布流</h4>
+          <p class="text-sm text-red-600">页面渲染后才能发 API 请求获取数据，形成 JS 下载 → 渲染 → 请求数据 → 再渲染的串行瀑布流，耗时成倍增加。</p>
+        </div>
+        <div class="p-4 border border-red-100 bg-red-50 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-2">📱 低端设备体验差</h4>
+          <p class="text-sm text-red-600">所有渲染计算都在客户端执行，低端手机或老旧设备上页面交互响应缓慢，甚至卡顿。</p>
+        </div>
+        <div class="p-4 border border-red-100 bg-red-50 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-2">🔗 社交分享失效</h4>
+          <p class="text-sm text-red-600">分享到微信、Twitter 等平台时，抓取不到标题、描述和封面图（Open Graph），显示为空白链接。</p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">Next.js 中的 SSR 核心机制</h3>
+      <p class="text-slate-600 mb-3">Next.js 通过以下方式实现高效的服务端渲染：</p>
       <ul class="list-disc pl-6 text-slate-600 mb-4 space-y-1">
-        <li>搜索引擎爬虫可以直接抓取到完整的页面内容，提升 SEO 效果</li>
-        <li>用户能更快看到页面内容，减少白屏时间</li>
-        <li>配合 React Hydration，页面在客户端激活后获得完整的交互能力</li>
+        <li><strong>Server Components 默认行为</strong>：App Router 中所有组件默认为服务端组件，直接在服务端执行</li>
+        <li><strong>Streaming（流式渲染）</strong>：使用 React Suspense 将页面分块流式传输，不等所有数据加载完毕</li>
+        <li><strong>React Hydration</strong>：服务端 HTML 到达浏览器后，React 在客户端激活（hydration），赋予交互能力</li>
+        <li><strong>按页选择策略</strong>：通过 fetch 的 cache 选项或 route segment config，每个页面可独立选择渲染模式</li>
       </ul>
 
-      <h3 class="text-xl font-semibold mt-6 mb-3">核心代码示例</h3>
-      <p class="text-slate-600 mb-2">Next.js App Router 中，默认所有组件都是 Server Component（服务端组件）：</p>
-      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto"><code>// app/page.tsx
-// 默认就是服务端组件，无需额外配置
-async function HomePage() {
-  // 直接在组件中获取数据（服务端执行）
-  const data = await fetch('https://api.example.com/data').then(res => res.json());
-
-  return (
-    &lt;main&gt;
-      &lt;h1&gt;Hello Next.js&lt;/h1&gt;
-      &lt;pre&gt;{JSON.stringify(data, null, 2)}&lt;/pre&gt;
-    &lt;/main&gt;
-  );
-}
-
-export default HomePage;</code></pre>
+      <div class="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <h4 class="font-semibold text-amber-800 mb-2">💡 如何选择渲染策略？</h4>
+        <ul class="text-sm text-amber-700 space-y-1">
+          <li>⚡ 追求极致性能、内容固定 → <strong>SSG</strong></li>
+          <li>🔄 内容需要更新但非实时 → <strong>ISR</strong></li>
+          <li>🎯 需要实时数据或个性化 → <strong>SSR</strong></li>
+          <li>🖱️ 强交互、不需要 SEO → <strong>CSR</strong></li>
+        </ul>
+      </div>
     `,
   },
   {
     id: 2,
-    title: "SSR 的应用场景",
+    title: "Next.js的应用场景",
     icon: "Target",
     content: `
-      <h2 class="text-2xl font-bold mb-4">SSR 的应用场景</h2>
-      <p class="text-slate-600 mb-6">SSR 并不是万能的，选择合适的渲染方式对项目性能和开发体验都至关重要。以下是 SSR 最常见的应用场景。</p>
+      <h2 class="text-2xl font-bold mb-4">Next.js 的应用场景</h2>
+      <p class="text-slate-600 mb-4">Next.js 作为全栈框架，凭借混合渲染能力几乎覆盖所有 Web 应用场景。结合之前的四种渲染策略（SSR/SSG/ISR/CSR），下面来看 Next.js 在不同场景中的最佳实践。</p>
 
-      <h3 class="text-xl font-semibold mt-6 mb-3">🛒 电商商品详情页</h3>
-      <p class="text-slate-600 mb-3">电商网站的商品页面需要良好的 SEO 以吸引搜索流量，同时商品价格和库存需要实时更新。</p>
-      <ul class="list-disc pl-6 text-slate-600 mb-4 space-y-1">
-        <li>商品标题、描述、图片需要被搜索引擎索引</li>
-        <li>价格、库存等信息需要实时准确</li>
-        <li>首屏加载速度直接影响转化率</li>
-      </ul>
-      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-6"><code>// app/products/[id]/page.tsx
+      <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <p class="text-sm text-blue-700"><strong>核心理念：</strong>Next.js 不强求统一渲染方式，而是让你<strong>按页面粒度灵活选择</strong>。同一项目中，首页用 SSG、商品详情用 SSR/ISR、后台管理用 CSR，各取所长。</p>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🛒 电商平台</h3>
+      <p class="text-slate-600 mb-3">电商是最能体现混合渲染价值的场景，不同页面对性能和实时性的要求完全不同：</p>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">页面类型</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">推荐策略</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">原因</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">首页 / 类目页</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-mono">ISR</span></td>
+              <td class="border border-slate-200 px-4 py-2">商品列表定期更新，设置 5-10 分钟 revalidate</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">商品详情页</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-mono">SSR</span> + <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-mono">ISR</span></td>
+              <td class="border border-slate-200 px-4 py-2">SEO 要求高，价格/库存需实时；热点商品可用 ISR 减轻压力</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">购物车 / 结算</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-mono">CSR</span></td>
+              <td class="border border-slate-200 px-4 py-2">高度交互，无需 SEO，用户已登录状态</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">后台管理</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-mono">CSR</span></td>
+              <td class="border border-slate-200 px-4 py-2">纯管理后台，对 SEO 无要求</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-6"><code>// 商品详情页 - SSR 示例
+// app/products/[id]/page.tsx
 async function ProductPage({ params }: { params: { id: string } }) {
-  // 每次请求都获取最新的商品数据
   const product = await fetch(
     \`https://api.example.com/products/\${params.id}\`,
-    { cache: 'no-store' } // 不缓存，每次都重新获取
+    { cache: 'no-store' }  // SSR：每次都获取最新数据
   ).then(res => res.json());
 
   return (
@@ -191,53 +399,213 @@ async function ProductPage({ params }: { params: { id: string } }) {
       &lt;p&gt;库存: {product.stock}&lt;/p&gt;
     &lt;/div&gt;
   );
-}
+}</code></pre>
 
-export default ProductPage;</code></pre>
-
-      <h3 class="text-xl font-semibold mt-6 mb-3">📝 CMS 内容展示页面</h3>
-      <p class="text-slate-600 mb-3">新闻、博客、文档等内容型网站，核心诉求是 SEO 和快速的内容分发。</p>
+      <h3 class="text-xl font-semibold mt-6 mb-3">📝 内容型网站</h3>
+      <p class="text-slate-600 mb-3">博客、文档站、新闻资讯等内容驱动型网站，核心需求是 SEO + 快速加载：</p>
       <ul class="list-disc pl-6 text-slate-600 mb-4 space-y-1">
-        <li>文章内容需要被搜索引擎收录</li>
-        <li>内容更新后用户应尽快看到</li>
-        <li>社交分享时需要正确的预览图和描述</li>
+        <li><strong>博客 / 文档站</strong> → <span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs font-mono">SSG</span> 文章内容变化少，构建时预渲染，访问速度最快</li>
+        <li><strong>新闻资讯站</strong> → <span class="bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded text-xs font-mono">ISR</span> 内容定时更新，revalidate 设置 5-30 分钟</li>
+        <li><strong>聚合/推荐页</strong> → <span class="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded text-xs font-mono">SSR</span> + <span class="bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded text-xs font-mono">ISR</span> 个性化推荐用 SSR，公共内容用 ISR</li>
       </ul>
 
       <h3 class="text-xl font-semibold mt-6 mb-3">📣 营销活动页面</h3>
-      <p class="text-slate-600 mb-3">需要社交分享的营销页面、落地页（Landing Page）等。</p>
+      <p class="text-slate-600 mb-3">落地页（Landing Page）、活动专题页等，关键在于社交分享和加载速度：</p>
       <ul class="list-disc pl-6 text-slate-600 mb-4 space-y-1">
-        <li>分享到微信、Twitter 等平台时需要正确的 Open Graph 标签</li>
-        <li>活动数据（倒计时、库存）需要实时更新</li>
-        <li>页面加载速度影响用户留存</li>
+        <li><strong>静态活动页</strong> → <span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs font-mono">SSG</span>，构建时生成，最大性能</li>
+        <li><strong>含倒计时/库存的活动页</strong> → <span class="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded text-xs font-mono">SSR</span>，每次请求保证数据实时</li>
+        <li>通过 <code class="bg-slate-100 px-1 rounded">generateMetadata</code> 动态生成 Open Graph 标签，社交分享完美展示</li>
       </ul>
-      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-6"><code>// app/campaign/summer/page.tsx
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-6"><code>// app/campaign/[slug]/page.tsx
 import { Metadata } from 'next';
 
-export async function generateMetadata(): Promise&lt;Metadata&gt; {
-  const campaign = await fetchCampaignData();
+// 动态生成 SEO 元数据
+export async function generateMetadata({ params }): Promise&lt;Metadata&gt; {
+  const campaign = await fetchCampaignData(params.slug);
   return {
     title: campaign.title,
     description: campaign.description,
     openGraph: {
-      title: campaign.title,
-      description: campaign.description,
       images: [campaign.coverImage],
     },
   };
 }
 
-// 页面组件同样在服务端渲染
-export default async function SummerCampaign() {
-  const data = await fetchCampaignData();
-  return &lt;div&gt;{/* 营销页面内容 */}&lt;/div&gt;;
+export default async function CampaignPage({ params }) {
+  const data = await fetchCampaignData(params.slug);
+  return &lt;CampaignUI data={data} /&gt;;
 }</code></pre>
 
-      <h3 class="text-xl font-semibold mt-6 mb-3">💡 什么时候不适合用 SSR？</h3>
-      <ul class="list-disc pl-6 text-slate-600 space-y-1">
-        <li>纯后台管理系统（对 SEO 无要求，用户登录后才能访问）</li>
-        <li>高度交互的应用（如在线编辑器、游戏），可采用 CSR + 局部 SSR</li>
-        <li>数据变化不频繁的静态内容，优先使用 SSG（静态生成）</li>
+      <h3 class="text-xl font-semibold mt-6 mb-3">🖥️ SaaS / 后台管理系统</h3>
+      <p class="text-slate-600 mb-3">后台管理系统通常对 SEO 无要求，但需要丰富的交互和实时数据：</p>
+      <ul class="list-disc pl-6 text-slate-600 mb-4 space-y-1">
+        <li><strong>仪表盘</strong> → <span class="bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded text-xs font-mono">CSR</span> + 部分 <span class="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded text-xs font-mono">SSR</span>，布局用服务端组件，交互面板用客户端组件</li>
+        <li><strong>数据大屏</strong> → 使用 'use client' + WebSocket/轮询实现实时刷新</li>
+        <li><strong>表单/配置页</strong> → <span class="bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded text-xs font-mono">CSR</span>，大量交互逻辑放在客户端</li>
       </ul>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🏢 企业官网</h3>
+      <p class="text-slate-600 mb-3">企业官网是 Next.js 的<strong>最佳使用场景之一</strong>。官网的核心需求——SEO、加载速度、社交分享、多语言——恰恰是 Next.js 混合渲染的强项。</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="p-4 border border-green-100 bg-green-50 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">🔍 SEO 天然优势</h4>
+          <p class="text-sm text-green-700">使用 SSG/SSR 预渲染完整 HTML，搜索引擎可直接抓取所有页面内容，完美支持百度、Google 收录。</p>
+        </div>
+        <div class="p-4 border border-green-100 bg-green-50 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">⚡ 极速加载</h4>
+          <p class="text-sm text-green-700">静态生成的 HTML 通过 CDN 分发，首屏加载速度极快，Core Web Vitals 评分优秀。</p>
+        </div>
+        <div class="p-4 border border-green-100 bg-green-50 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">📱 社交分享完美</h4>
+          <p class="text-sm text-green-700">通过 generateMetadata 为每个页面动态生成 Open Graph 标签，分享到微信/Twitter 等平台展示完美。</p>
+        </div>
+        <div class="p-4 border border-green-100 bg-green-50 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">🌍 国际化支持</h4>
+          <p class="text-sm text-green-700">内置 i18n 路由，轻松实现多语言官网，SEO 友好的多语言 URL 结构。</p>
+        </div>
+      </div>
+      <p class="text-slate-600 mb-3">企业官网的不同页面应采用不同的渲染策略：</p>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">页面类型</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">推荐策略</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">首页 / 产品页</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-mono">SSG</span></td>
+              <td class="border border-slate-200 px-4 py-2">内容相对固定，构建时预渲染，CDN 分发极速加载</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">新闻 / 动态</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-mono">ISR</span></td>
+              <td class="border border-slate-200 px-4 py-2">定时更新内容，revalidate 设置 5-30 分钟</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">联系我们 / 表单</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-mono">SSG</span> + <span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-mono">CSR</span></td>
+              <td class="border border-slate-200 px-4 py-2">页面用 SSG，表单交互部分用客户端组件</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">案例展示</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-mono">SSG</span> / <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-mono">ISR</span></td>
+              <td class="border border-slate-200 px-4 py-2">案例不多用 SSG，定期新增案例用 ISR</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// app/(www)/page.tsx — 企业官网首页 SSG 示例
+import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'XX科技 — 领先的数字化解决方案提供商',
+  description: 'XX科技为全球500+企业提供数字化转型服务...',
+  openGraph: {
+    title: 'XX科技 — 领先的数字化解决方案提供商',
+    description: '为全球500+企业提供数字化转型服务',
+    images: ['https://www.example.com/og-home.jpg'],
+  },
+};
+
+export default async function HomePage() {
+  // SSG 模式：构建时获取数据，生成静态 HTML
+  const { cases, news } = await fetchHomeData();
+
+  return (
+    &lt;&gt;
+      {/* Hero 区域 */}
+      &lt;section className="hero"&gt;
+        &lt;h1&gt;数字驱动未来&lt;/h1&gt;
+        &lt;p&gt;让技术赋能每一个商业场景&lt;/p&gt;
+        &lt;Link href="/contact"&gt;立即咨询&lt;/Link&gt;
+      &lt;/section&gt;
+
+      {/* 案例展示 */}
+      &lt;section className="cases"&gt;
+        {cases.map(item =&gt; (
+          &lt;article key={item.id}&gt;{item.title}&lt;/article&gt;
+        ))}
+      &lt;/section&gt;
+
+      {/* 新闻动态（ISR 定期更新）*/}
+      &lt;section className="news"&gt;
+        {news.map(item =&gt; (
+          &lt;article key={item.id}&gt;{item.title}&lt;/article&gt;
+        ))}
+      &lt;/section&gt;
+    &lt;/&gt;
+  );
+}</code></pre>
+      <div class="p-4 bg-green-50 border border-green-200 rounded-lg mb-6">
+        <h4 class="font-semibold text-green-800 mb-2">💡 官网用 Next.js 的核心优势</h4>
+        <ul class="list-disc pl-6 text-sm text-green-700 space-y-1">
+          <li><strong>SSG 生成静态文件</strong>：可部署到 CDN，访问速度极快，服务器成本低</li>
+          <li><strong>服务端组件零 JS</strong>：官网大多纯展示内容，服务端渲染后客户端几乎不需要加载 JS</li>
+          <li><strong>next/image 自动优化</strong>：官网上大量图片自动懒加载、格式转换（WebP/AVIF），性能大幅提升</li>
+          <li><strong>Preview Mode</strong>：编辑人员在 CMS 更新内容后，可预览未发布的页面</li>
+          <li><strong>配合 Headless CMS</strong>（如 Strapi / Contentful）：市场人员在 CMS 中编辑内容，触发 Webhook 重新构建/ISR 更新</li>
+        </ul>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">📊 场景与策略速查表</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">应用场景</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">推荐策略</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">关键原因</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2">企业官网</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-mono">SSG</span> + <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-mono">ISR</span></td>
+              <td class="border border-slate-200 px-4 py-2">SEO + 速度 + 社交分享，Next.js 最佳场景</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2">技术文档站</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-mono">SSG</span> / <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-mono">ISR</span></td>
+              <td class="border border-slate-200 px-4 py-2">版本化文档用 SSG；频繁更新的用 ISR</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2">在线商城</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-mono">SSR</span> + <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-mono">ISR</span> + <span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-mono">CSR</span></td>
+              <td class="border border-slate-200 px-4 py-2">混合策略各取所长</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2">社交媒体 Feed</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-mono">SSR</span></td>
+              <td class="border border-slate-200 px-4 py-2">个性化内容 + SEO 需求</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2">实时数据看板</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-mono">CSR</span></td>
+              <td class="border border-slate-200 px-4 py-2">实时刷新，无需 SEO</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2">内网管理系统</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-mono">CSR</span></td>
+              <td class="border border-slate-200 px-4 py-2">登录后访问，SEO 无意义</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2">营销落地页</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded text-xs font-mono">SSG</span> / <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-mono">SSR</span></td>
+              <td class="border border-slate-200 px-4 py-2">需要社交分享 OG 标签</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2">全栈 SaaS 产品</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-mono">SSR</span> + <span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-mono">CSR</span></td>
+              <td class="border border-slate-200 px-4 py-2">营销页 SSR，App 内页 CSR</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     `,
   },
   {
@@ -326,6 +694,163 @@ yarn create next-app my-app</code></pre>
     content: `
       <h2 class="text-2xl font-bold mb-4">路由 (Routing)</h2>
       <p class="text-slate-600 mb-6">Next.js App Router 采用基于文件系统的路由，文件夹结构直接映射为 URL 路径。</p>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">文件系统路由 vs React Router 编程式路由</h3>
+      <p class="text-slate-600 mb-4">传统 React 项目使用 <strong>React Router</strong> 通过代码配置路由，而 Next.js 采用<strong>约定式文件系统路由</strong>，两者在理念和开发体验上有本质区别。</p>
+
+      <h4 class="font-semibold mb-3">🔧 路由定义方式对比</h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <p class="text-xs text-slate-400 mb-2 font-medium">React Router（编程式配置）</p>
+          <pre class="bg-slate-900 text-white p-3 rounded text-xs overflow-x-auto"><code>// src/router/index.tsx
+import { createBrowserRouter } from 'react-router-dom';
+import RootLayout from '@/layouts/RootLayout';
+import HomePage from '@/pages/Home';
+import AboutPage from '@/pages/About';
+import BlogList from '@/pages/BlogList';
+import BlogPost from '@/pages/BlogPost';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: &lt;RootLayout /&gt;,
+    children: [
+      { index: true, element: &lt;HomePage /&gt; },
+      { path: 'about', element: &lt;AboutPage /&gt; },
+      { path: 'blog', element: &lt;BlogList /&gt; },
+      { path: 'blog/:slug', element: &lt;BlogPost /&gt; },
+    ],
+  },
+]);</code></pre>
+        </div>
+        <div>
+          <p class="text-xs text-slate-400 mb-2 font-medium">Next.js（文件系统约定）</p>
+          <pre class="bg-slate-900 text-white p-3 rounded text-xs overflow-x-auto"><code>app/
+├── layout.tsx          # 根布局
+├── page.tsx            # → /
+├── about/
+│   └── page.tsx        # → /about
+└── blog/
+    ├── page.tsx        # → /blog
+    └── [slug]/
+        └── page.tsx    # → /blog/:slug
+
+// 无需手动编写路由配置！
+// 创建文件夹 = 定义路由</code></pre>
+        </div>
+      </div>
+
+      <h4 class="font-semibold mb-3">📊 核心区别对比</h4>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">对比维度</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">React Router</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">Next.js 文件系统路由</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">路由定义方式</td>
+              <td class="border border-slate-200 px-4 py-2">代码中配置路由表（JSX 对象/组件）</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">约定优于配置</span>，文件夹即路由</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">动态路由</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded text-xs">:param</code> 语法在配置中声明</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded text-xs">[param]</code> 文件夹命名约定</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">嵌套布局</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded text-xs">&lt;Outlet /&gt;</code> 组件手动指定位置</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded text-xs">layout.tsx</code> 自动嵌套，天然支持</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">代码分割</td>
+              <td class="border border-slate-200 px-4 py-2">需手动 <code class="bg-slate-100 px-1 rounded text-xs">React.lazy()</code> + <code class="bg-slate-100 px-1 rounded text-xs">Suspense</code></td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">自动按路由拆分</span>，每个 page 独立 chunk</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">404 处理</td>
+              <td class="border border-slate-200 px-4 py-2">配置 <code class="bg-slate-100 px-1 rounded text-xs">path: '*'</code> 通配路由</td>
+              <td class="border border-slate-200 px-4 py-2">创建 <code class="bg-slate-100 px-1 rounded text-xs">not-found.tsx</code> 文件即可</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">加载状态</td>
+              <td class="border border-slate-200 px-4 py-2">需自行实现 loading 状态管理</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded text-xs">loading.tsx</code> 自动包裹 Suspense</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">错误处理</td>
+              <td class="border border-slate-200 px-4 py-2">自行创建 ErrorBoundary 类组件</td>
+              <td class="border border-slate-200 px-4 py-2"><code class="bg-slate-100 px-1 rounded text-xs">error.tsx</code> 自动作为错误边界</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">服务端渲染</td>
+              <td class="border border-slate-200 px-4 py-2">需额外配置（如 react-router + Express）</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">内置 SSR</span>，无需额外配置</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">路由组织性</td>
+              <td class="border border-slate-200 px-4 py-2">路由表与页面文件分离，项目大了难维护</td>
+              <td class="border border-slate-200 px-4 py-2">路由和页面在同一目录树，<span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">直观好找</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="font-semibold mb-3">🧭 导航方式对比</h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <p class="text-xs text-slate-400 mb-2 font-medium">React Router</p>
+          <pre class="bg-slate-900 text-white p-3 rounded text-xs overflow-x-auto"><code>import { Link, useNavigate } from 'react-router-dom';
+
+// 声明式导航
+&lt;Link to="/about"&gt;关于我们&lt;/Link&gt;
+
+// 编程式导航
+const navigate = useNavigate();
+navigate('/blog/hello-world');</code></pre>
+        </div>
+        <div>
+          <p class="text-xs text-slate-400 mb-2 font-medium">Next.js</p>
+          <pre class="bg-slate-900 text-white p-3 rounded text-xs overflow-x-auto"><code>import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+// 声明式导航（支持预加载）
+&lt;Link href="/about"&gt;关于我们&lt;/Link&gt;
+
+// 编程式导航
+const router = useRouter();
+router.push('/blog/hello-world');</code></pre>
+        </div>
+      </div>
+
+      <h4 class="font-semibold mb-3">✨ Next.js 文件系统路由的独特优势</h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+        <div class="p-3 border border-blue-100 bg-blue-50 rounded-lg">
+          <h5 class="font-semibold text-blue-800 text-sm mb-1">📂 零配置上手快</h5>
+          <p class="text-xs text-blue-700">不需要安装 react-router-dom，也不需要写任何路由配置代码。创建文件 = 创建路由，删除文件 = 删除路由。</p>
+        </div>
+        <div class="p-3 border border-blue-100 bg-blue-50 rounded-lg">
+          <h5 class="font-semibold text-blue-800 text-sm mb-1">🧩 布局自动嵌套</h5>
+          <p class="text-xs text-blue-700">layout.tsx 自动作用于该目录及所有子目录，导航时保持状态不重新挂载，而 React Router 需手动配置 Outlet 层级。</p>
+        </div>
+        <div class="p-3 border border-blue-100 bg-blue-50 rounded-lg">
+          <h5 class="font-semibold text-blue-800 text-sm mb-1">⚡ 自动代码分割</h5>
+          <p class="text-xs text-blue-700">每个 route segment 自动拆分为独立 JS bundle，用户只加载当前页面的代码，无需手动配置 lazy loading。</p>
+        </div>
+        <div class="p-3 border border-blue-100 bg-blue-50 rounded-lg">
+          <h5 class="font-semibold text-blue-800 text-sm mb-1">🎯 内置最佳实践</h5>
+          <p class="text-xs text-blue-700">loading.tsx、error.tsx、not-found.tsx 等约定文件开箱即用，把 React Router 中需要自行实现的功能变成了内置约定。</p>
+        </div>
+      </div>
+
+      <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg mb-6">
+        <h4 class="font-semibold text-amber-800 mb-2">💡 一句话总结</h4>
+        <p class="text-sm text-amber-700">React Router 是<strong>"你告诉框架路由是什么"</strong>，Next.js 是<strong>"文件夹结构本身就是路由"</strong>。前者灵活但需要维护路由表，后者约束性强但开发效率高、团队协作更规范。</p>
+      </div>
 
       <h3 class="text-xl font-semibold mt-6 mb-3">文件约定 (page.tsx)</h3>
       <p class="text-slate-600 mb-3">在 App Router 中，只有命名为 <code class="bg-slate-100 px-1 rounded">page.tsx</code> 的文件才是可公开访问的路由页面：</p>
@@ -536,6 +1061,118 @@ Layout → Template → 子页面的 Layout → 子页面的 Template → 页面
     content: `
       <h2 class="text-2xl font-bold mb-4">页面元数据 (Metadata)</h2>
       <p class="text-slate-600 mb-6">Next.js 提供了强大的元数据 API，用于设置页面的 title、description、OG 标签等，对 SEO 和社交分享至关重要。</p>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">什么是 OG 标签？</h3>
+      <p class="text-slate-600 mb-3"><strong>OG 标签（Open Graph）</strong>是由 Facebook 于 2010 年提出的一套<strong>元数据协议</strong>，通过在 HTML 的 <code class="bg-slate-100 px-1 rounded">&lt;head&gt;</code> 中插入 <code class="bg-slate-100 px-1 rounded">&lt;meta&gt;</code> 标签，让网页在社交平台分享时能展示出<strong>标题、描述、缩略图</strong>等富媒体卡片，而不是一个光秃秃的链接。</p>
+
+      <div class="mb-4">
+        <p class="text-xs text-slate-400 mb-2 font-medium">没有 OG 标签 vs 有 OG 标签 — 分享效果对比</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 border border-red-200 bg-red-50 rounded-lg">
+            <h5 class="font-semibold text-red-800 text-sm mb-2">❌ 没有 OG 标签</h5>
+            <p class="text-xs text-red-600 mb-2">分享到微信 / Twitter / Facebook 时只显示：</p>
+            <div class="bg-white border border-red-100 rounded p-2 text-xs text-slate-500">
+              <p class="text-blue-500 underline truncate">https://example.com/products/123</p>
+              <p class="text-slate-400 mt-1">（无标题、无描述、无图片）</p>
+            </div>
+          </div>
+          <div class="p-4 border border-green-200 bg-green-50 rounded-lg">
+            <h5 class="font-semibold text-green-800 text-sm mb-2">✅ 有 OG 标签</h5>
+            <p class="text-xs text-green-600 mb-2">同样的链接分享时展示为富媒体卡片：</p>
+            <div class="bg-white border border-green-100 rounded overflow-hidden">
+              <div class="bg-slate-200 h-20 flex items-center justify-center text-xs text-slate-400">📷 封面图</div>
+              <div class="p-2">
+                <p class="text-xs font-semibold text-slate-800">2024新款运动跑鞋 | XX品牌旗舰店</p>
+                <p class="text-[10px] text-slate-500 mt-0.5">轻盈透气，全掌碳板科技，限时优惠 ¥599</p>
+                <p class="text-[10px] text-slate-400 mt-0.5">example.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="font-semibold mb-3">🏷️ 常用 OG 标签一览</h4>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">OG 标签</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">含义</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">示例值</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">og:title</td>
+              <td class="border border-slate-200 px-4 py-2">分享卡片的标题</td>
+              <td class="border border-slate-200 px-4 py-2 text-xs text-slate-500">2024新款运动跑鞋 | XX品牌旗舰店</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">og:description</td>
+              <td class="border border-slate-200 px-4 py-2">分享卡片的描述文字</td>
+              <td class="border border-slate-200 px-4 py-2 text-xs text-slate-500">轻盈透气，全掌碳板科技...</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">og:image</td>
+              <td class="border border-slate-200 px-4 py-2">分享卡片的封面缩略图</td>
+              <td class="border border-slate-200 px-4 py-2 text-xs text-slate-500">https://example.com/og-image.jpg</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">og:url</td>
+              <td class="border border-slate-200 px-4 py-2">页面的规范 URL</td>
+              <td class="border border-slate-200 px-4 py-2 text-xs text-slate-500">https://example.com/products/123</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">og:type</td>
+              <td class="border border-slate-200 px-4 py-2">内容类型（website / article / product 等）</td>
+              <td class="border border-slate-200 px-4 py-2 text-xs text-slate-500">product</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">og:site_name</td>
+              <td class="border border-slate-200 px-4 py-2">网站名称</td>
+              <td class="border border-slate-200 px-4 py-2 text-xs text-slate-500">XX品牌旗舰店</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">og:locale</td>
+              <td class="border border-slate-200 px-4 py-2">语言区域</td>
+              <td class="border border-slate-200 px-4 py-2 text-xs text-slate-500">zh_CN</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mb-4 p-4 bg-purple-50 border border-purple-200 rounded-lg">
+        <h4 class="font-semibold text-purple-800 mb-2">🔗 OG 标签最终生成的 HTML</h4>
+        <p class="text-sm text-purple-700 mb-2">当 Next.js 渲染页面时，metadata 对象会被转换为 <code class="bg-purple-100 px-1 rounded">&lt;meta&gt;</code> 标签插入到 <code class="bg-purple-100 px-1 rounded">&lt;head&gt;</code> 中：</p>
+        <pre class="bg-slate-900 text-white p-3 rounded text-xs overflow-x-auto"><code>&lt;!-- Next.js metadata 生成的 HTML --&gt;
+&lt;head&gt;
+  &lt;title&gt;2024新款运动跑鞋 | XX品牌旗舰店&lt;/title&gt;
+  &lt;meta name="description" content="轻盈透气，全掌碳板科技..." /&gt;
+  
+  &lt;!-- Open Graph 标签 → 社交平台读取这些 --&gt;
+  &lt;meta property="og:title" content="2024新款运动跑鞋 | XX品牌旗舰店" /&gt;
+  &lt;meta property="og:description" content="轻盈透气，全掌碳板科技..." /&gt;
+  &lt;meta property="og:image" content="https://example.com/cover.jpg" /&gt;
+  &lt;meta property="og:url" content="https://example.com/products/123" /&gt;
+  &lt;meta property="og:type" content="product" /&gt;
+  &lt;meta property="og:site_name" content="XX品牌旗舰店" /&gt;
+  
+  &lt;!-- Twitter Card 标签 --&gt;
+  &lt;meta name="twitter:card" content="summary_large_image" /&gt;
+  &lt;meta name="twitter:title" content="2024新款运动跑鞋 | XX品牌旗舰店" /&gt;
+&lt;/head&gt;</code></pre>
+        <p class="text-xs text-purple-600 mt-2">微信、QQ、Facebook、Twitter、LinkedIn、Slack、Discord 等几乎所有社交/通讯平台都会解析 OG 标签来生成链接预览卡片。</p>
+      </div>
+
+      <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg mb-6">
+        <h4 class="font-semibold text-amber-800 mb-2">💡 为什么 OG 标签对 SEO 和用户体验至关重要？</h4>
+        <ul class="list-disc pl-6 text-sm text-amber-700 space-y-1">
+          <li><strong>社交传播转化率</strong>：带封面图的分享链接点击率比纯文本链接高 <strong>3-5 倍</strong></li>
+          <li><strong>品牌形象</strong>：精美的分享卡片提升品牌专业感，差的展示降低用户信任</li>
+          <li><strong>SEO 间接影响</strong>：虽然 OG 标签不直接影响搜索排名，但更高的社交点击率带来更多流量和反向链接，间接提升 SEO</li>
+          <li><strong>必选项</strong>：对于电商、内容站、企业官网，OG 标签不是"锦上添花"，而是<strong>必须配置</strong>的基础设施</li>
+        </ul>
+      </div>
 
       <h3 class="text-xl font-semibold mt-6 mb-3">静态 Metadata 写法</h3>
       <p class="text-slate-600 mb-3">在 page.tsx 或 layout.tsx 中直接 export 一个 metadata 对象：</p>
