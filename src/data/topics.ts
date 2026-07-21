@@ -12,6 +12,8 @@ import {
   Split,
   Shield,
   Braces,
+  Database,
+  ShieldCheck,
 } from "lucide-react";
 
 export interface Topic {
@@ -35,6 +37,8 @@ export const iconMap = {
   Split,
   Shield,
   Braces,
+  Database,
+  ShieldCheck,
 };
 
 export const topics: Topic[] = [
@@ -77,13 +81,13 @@ export const topics: Topic[] = [
         </div>
       </div>
 
-      <h3 class="text-lg font-semibold text-slate-800 mb-3">📚 培训章节</h3>
+      <h3 class="text-lg font-semibold text-slate-800 mb-3">📚 培训章节（共 7 章，15 个模块）</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="p-4 border border-slate-200 rounded-lg hover:border-blue-400 transition-colors">
           <h3 class="font-semibold text-slate-800">第一章：基础概念</h3>
           <ul class="mt-2 text-sm text-slate-600 space-y-1">
-            <li>• 什么是 SSR？</li>
-            <li>• SSR 的应用场景</li>
+            <li>• 混合渲染（SSR / SSG / ISR / CSR）</li>
+            <li>• Next.js 的应用场景</li>
           </ul>
         </div>
         <div class="p-4 border border-slate-200 rounded-lg hover:border-blue-400 transition-colors">
@@ -96,27 +100,40 @@ export const topics: Topic[] = [
         <div class="p-4 border border-slate-200 rounded-lg hover:border-blue-400 transition-colors">
           <h3 class="font-semibold text-slate-800">第三章：核心特性</h3>
           <ul class="mt-2 text-sm text-slate-600 space-y-1">
-            <li>• 布局与模板</li>
-            <li>• 页面元数据</li>
-            <li>• 路由分组</li>
+            <li>• 布局 (Layout) 与模板 (Template)</li>
+            <li>• 页面元数据 (Metadata)</li>
+            <li>• 路由分组 (Route Groups)</li>
           </ul>
         </div>
         <div class="p-4 border border-slate-200 rounded-lg hover:border-blue-400 transition-colors">
-          <h3 class="font-semibold text-slate-800">第四章：部署</h3>
-          <ul class="mt-2 text-sm text-slate-600 space-y-1">
-            <li>• Vercel 自动部署</li>
-          </ul>
-        </div>
-        <div class="p-4 border border-slate-200 rounded-lg hover:border-blue-400 transition-colors md:col-span-2">
-          <h3 class="font-semibold text-slate-800">第五章：高级路由</h3>
+          <h3 class="font-semibold text-slate-800">第四章：高级路由</h3>
           <ul class="mt-2 text-sm text-slate-600 space-y-1">
             <li>• 动态路由 (Dynamic Routes)</li>
             <li>• 平行路由 (Parallel Routes)</li>
             <li>• 拦截路由 (Intercepting Routes)</li>
           </ul>
         </div>
+        <div class="p-4 border border-slate-200 rounded-lg hover:border-blue-400 transition-colors">
+          <h3 class="font-semibold text-slate-800">第五章：API 与数据库</h3>
+          <ul class="mt-2 text-sm text-slate-600 space-y-1">
+            <li>• API 接口开发（Route Handler）</li>
+            <li>• 连接数据库（Prisma / Drizzle / MongoDB）</li>
+          </ul>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg hover:border-blue-400 transition-colors">
+          <h3 class="font-semibold text-slate-800">第六章：请求控制</h3>
+          <ul class="mt-2 text-sm text-slate-600 space-y-1">
+            <li>• 中间件（Middleware）— 认证、限流、国际化</li>
+          </ul>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg hover:border-blue-400 transition-colors md:col-span-2">
+          <h3 class="font-semibold text-slate-800">第七章：部署</h3>
+          <ul class="mt-2 text-sm text-slate-600 space-y-1">
+            <li>• Vercel 自动部署 — 零配置、自动 HTTPS、预览环境</li>
+          </ul>
+        </div>
       </div>
-      <p class="mt-6 text-slate-500 text-sm">💡 点击左侧菜单开始学习，每章都包含理论说明和代码示例。</p>
+      <p class="mt-6 text-slate-500 text-sm">💡 点击左侧菜单开始学习，每个模块都包含理论说明和代码示例。</p>
     `,
   },
   {
@@ -1846,7 +1863,7 @@ export default function PhotoPage({ params }: { params: { id: string } }) {
     title: "API 接口开发",
     icon: "Braces",
     content: `
-      <h2 class="text-2xl font-bold mb-4">10. API 接口开发</h2>
+      <h2 class="text-2xl font-bold mb-4">API 接口开发</h2>
       <p class="text-slate-600 mb-6">Next.js 不仅可以渲染页面，还能在同一项目中编写后端 API 接口。这样前后端代码共享同一技术栈，极大简化全栈开发。</p>
 
       <h3 class="text-xl font-semibold mt-6 mb-3">App Router 中的 Route Handlers</h3>
@@ -2182,6 +2199,1073 @@ export async function OPTIONS() {
           <li>使用 <code class="bg-blue-100 px-1 rounded">route.ts</code> 处理所有 API 逻辑，保持前后端代码一致性</li>
           <li>为 API 响应添加统一的错误处理和状态码</li>
           <li>敏感操作（如删除）需要添加身份验证中间件</li>
+        </ul>
+      </div>
+    `,
+  },
+  {
+    id: 13,
+    title: "连接数据库",
+    icon: "Database",
+    content: `
+      <h2 class="text-2xl font-bold mb-4">Next.js 连接数据库</h2>
+      <p class="text-slate-600 mb-6">Next.js 作为<strong>全栈框架</strong>，天然支持在服务端连接数据库。你可以在 Server Component、Route Handler 或 Server Action 中直接操作数据库，无需单独搭建后端服务。</p>
+
+      <div class="mb-6 p-5 bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 rounded-xl">
+        <h3 class="text-lg font-semibold text-indigo-800 mb-3">🗄️ 数据库连接的核心原则</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+          <div class="flex items-start gap-2">
+            <span class="text-indigo-500 mt-0.5 text-lg">🖥️</span>
+            <span class="text-slate-600"><strong>只在服务端连接</strong> — 数据库凭据不能暴露给客户端，所有数据库操作必须在 Server Component、Route Handler 或 Server Action 中执行</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-indigo-500 mt-0.5 text-lg">🔌</span>
+            <span class="text-slate-600"><strong>连接复用</strong> — 使用单例模式管理数据库连接，避免每次请求都创建新连接（特别是 Serverless 环境）</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-indigo-500 mt-0.5 text-lg">🛡️</span>
+            <span class="text-slate-600"><strong>ORM 推荐</strong> — 优先使用 Prisma 或 Drizzle ORM，享受类型安全、自动迁移和查询构建器</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🔧 主流 ORM 对比</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">特性</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">Prisma</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">Drizzle ORM</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">TypeORM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">类型安全</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">自动生成</span></td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">编译时推断</span></td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded text-xs">装饰器</span></td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">Schema 定义</td>
+              <td class="border border-slate-200 px-4 py-2">Prisma Schema 文件（DSL）</td>
+              <td class="border border-slate-200 px-4 py-2">TypeScript 代码定义</td>
+              <td class="border border-slate-200 px-4 py-2">装饰器 / Entity 类</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">数据库迁移</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">内置 prisma migrate</span></td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">drizzle-kit</span></td>
+              <td class="border border-slate-200 px-4 py-2">需手动或使用 synchronize</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">性能</td>
+              <td class="border border-slate-200 px-4 py-2">优秀（有额外 JS 层）</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">极佳（零运行时开销）</span></td>
+              <td class="border border-slate-200 px-4 py-2">中等</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">Next.js 适配度</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">⭐⭐⭐⭐⭐</span></td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-xs">⭐⭐⭐⭐⭐</span></td>
+              <td class="border border-slate-200 px-4 py-2">⭐⭐⭐</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">生态成熟度</td>
+              <td class="border border-slate-200 px-4 py-2">最成熟，社区最大</td>
+              <td class="border border-slate-200 px-4 py-2">快速增长</td>
+              <td class="border border-slate-200 px-4 py-2">成熟但更新慢</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🚀 实战一：Prisma + PostgreSQL</h3>
+      <p class="text-slate-600 mb-3">Prisma 是 Next.js 生态中最流行的 ORM，以下是完整接入步骤：</p>
+
+      <h4 class="font-semibold mb-3">1. 安装与初始化</h4>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code># 安装 Prisma
+npm install prisma @prisma/client
+
+# 初始化 Prisma（生成 prisma/schema.prisma）
+npx prisma init
+
+# 安装完成后，Prisma CLI 可用
+npx prisma --version</code></pre>
+
+      <h4 class="font-semibold mb-3">2. 定义数据模型 (schema.prisma)</h4>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  avatar    String?
+  role      Role     @default(USER)
+  posts     Post[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+  EDITOR
+}</code></pre>
+
+      <h4 class="font-semibold mb-3">3. 创建数据库迁移</h4>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code># 开发环境：生成迁移文件并应用到数据库
+npx prisma migrate dev --name init
+
+# 生产环境：应用迁移
+npx prisma migrate deploy
+
+# 查看数据库（Prisma Studio）
+npx prisma studio</code></pre>
+
+      <h4 class="font-semibold mb-3">4. 封装 Prisma 客户端（单例模式）</h4>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// lib/prisma.ts
+import { PrismaClient } from '@prisma/client';
+
+// 声明全局变量避免开发时热更新创建多个连接
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+export const prisma = globalForPrisma.prisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== 'production') {
+  globalForPrisma.prisma = prisma;
+}
+
+// 使用方式：在任何服务端代码中直接 import
+// import { prisma } from '@/lib/prisma';</code></pre>
+      <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg mb-4">
+        <h5 class="font-semibold text-amber-800 text-sm mb-1">⚠️ 为什么要单例？</h5>
+        <p class="text-xs text-amber-700">Next.js 开发模式下会热更新，每次请求可能触发模块重新加载，导致创建多个数据库连接耗尽连接池。将 client 挂在 <code class="bg-amber-100 px-1 rounded">globalThis</code> 上确保全局只有一个实例。</p>
+      </div>
+
+      <h4 class="font-semibold mb-3">5. 在 Server Component 中查询数据</h4>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// app/posts/page.tsx (Server Component)
+import { prisma } from '@/lib/prisma';
+
+export default async function PostsPage() {
+  // 直接在服务端查询数据库，无需 API 中转！
+  const posts = await prisma.post.findMany({
+    where: { published: true },
+    include: { author: { select: { name: true } } },
+    orderBy: { createdAt: 'desc' },
+    take: 20,
+  });
+
+  return (
+    &lt;div className="max-w-4xl mx-auto py-8"&gt;
+      &lt;h1 className="text-2xl font-bold mb-6"&gt;文章列表&lt;/h1&gt;
+      &lt;ul className="space-y-4"&gt;
+        {posts.map((post) =&gt; (
+          &lt;li key={post.id} className="p-4 border rounded-lg"&gt;
+            &lt;h2 className="text-lg font-semibold"&gt;{post.title}&lt;/h2&gt;
+            &lt;p className="text-sm text-slate-500"&gt;作者：{post.author.name}&lt;/p&gt;
+            &lt;p className="text-slate-600 mt-2"&gt;{post.content?.slice(0, 200)}&lt;/p&gt;
+          &lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+
+      <h4 class="font-semibold mb-3">6. 在 Route Handler 中增删改</h4>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// app/api/posts/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+
+// POST /api/posts — 创建文章
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const post = await prisma.post.create({
+      data: {
+        title: body.title,
+        content: body.content,
+        authorId: body.authorId,
+      },
+    });
+    return NextResponse.json({ post }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: '创建失败' },
+      { status: 500 }
+    );
+  }
+}
+
+// DELETE /api/posts?id=1 — 删除文章
+export async function DELETE(request: NextRequest) {
+  const id = request.nextUrl.searchParams.get('id');
+  if (!id) {
+    return NextResponse.json({ error: '缺少 id' }, { status: 400 });
+  }
+  await prisma.post.delete({ where: { id: Number(id) } });
+  return NextResponse.json({ message: '删除成功' });
+}</code></pre>
+
+      <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg mb-6">
+        <h4 class="font-semibold text-blue-800 mb-2">💡 Server Component 直接查库 vs API Route 查库</h4>
+        <ul class="list-disc pl-6 text-sm text-blue-700 space-y-1">
+          <li><strong>Server Component 直接查库</strong>：适用于页面加载时获取数据（SSR/SSG），代码最简洁，无额外网络开销</li>
+          <li><strong>API Route 查库</strong>：适用于客户端交互（表单提交、实时更新），或需要给外部系统调用</li>
+          <li><strong>Server Action</strong>：适用于表单提交、数据变更，比 API Route 更简洁，天然类型安全</li>
+        </ul>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🟢 实战二：Drizzle ORM + MySQL</h3>
+      <p class="text-slate-600 mb-3">Drizzle ORM 以零运行时开销和 TypeScript 原生体验著称，是 Prisma 的有力竞争者：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code># 安装
+npm install drizzle-orm mysql2
+npm install -D drizzle-kit
+
+# 初始化配置 drizzle.config.ts</code></pre>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// db/schema.ts — 用 TypeScript 定义表结构
+import { mysqlTable, int, varchar, text, boolean, timestamp, mysqlEnum } from 'drizzle-orm/mysql-core';
+
+export const users = mysqlTable('users', {
+  id: int('id').autoincrement().primaryKey(),
+  email: varchar('email', { length: 255 }).notNull().unique(),
+  name: varchar('name', { length: 255 }),
+  role: mysqlEnum('role', ['user', 'admin', 'editor']).default('user'),
+  createdAt: timestamp('created_at').defaultNow(),
+});
+
+export const posts = mysqlTable('posts', {
+  id: int('id').autoincrement().primaryKey(),
+  title: varchar('title', { length: 255 }).notNull(),
+  content: text('content'),
+  published: boolean('published').default(false),
+  authorId: int('author_id').references(() => users.id),
+  createdAt: timestamp('created_at').defaultNow(),
+});</code></pre>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// db/index.ts — 数据库连接
+import { drizzle } from 'drizzle-orm/mysql2';
+import mysql from 'mysql2/promise';
+import * as schema from './schema';
+
+const connection = await mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
+export const db = drizzle(connection, { schema, mode: 'default' });</code></pre>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// app/posts/page.tsx — 使用 Drizzle 查询
+import { db } from '@/db';
+import { posts, users } from '@/db/schema';
+import { eq, desc } from 'drizzle-orm';
+
+export default async function PostsPage() {
+  const allPosts = await db
+    .select({
+      id: posts.id,
+      title: posts.title,
+      content: posts.content,
+      authorName: users.name,
+    })
+    .from(posts)
+    .leftJoin(users, eq(posts.authorId, users.id))
+    .where(eq(posts.published, true))
+    .orderBy(desc(posts.createdAt))
+    .limit(20);
+
+  return (
+    &lt;ul&gt;
+      {allPosts.map((post) =&gt; (
+        &lt;li key={post.id}&gt;{post.title} — {post.authorName}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🍃 MongoDB（NoSQL）接入</h3>
+      <p class="text-slate-600 mb-3">对于文档型数据库，Next.js 配合 Mongoose 也是常见选择：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code># 安装
+npm install mongoose
+npm install -D @types/mongoose</code></pre>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// lib/mongodb.ts — 连接管理（带缓存单例）
+import mongoose from 'mongoose';
+
+const MONGODB_URI = process.env.MONGODB_URI!;
+
+// 利用 globalThis 缓存连接
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+export async function connectDB() {
+  if (cached.conn) return cached.conn;
+
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI, {
+      bufferCommands: false,
+    });
+  }
+
+  cached.conn = await cached.promise;
+  return cached.conn;
+}</code></pre>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// models/Post.ts
+import mongoose, { Schema, Document } from 'mongoose';
+
+interface IPost extends Document {
+  title: string;
+  content: string;
+  authorId: string;
+  published: boolean;
+  createdAt: Date;
+}
+
+const PostSchema = new Schema&lt;IPost&gt;({
+  title: { type: String, required: true },
+  content: { type: String },
+  authorId: { type: String, required: true },
+  published: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export const Post = mongoose.models.Post 
+  || mongoose.model&lt;IPost&gt;('Post', PostSchema);</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">📊 主流数据库支持度一览</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">数据库</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">类型</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">Prisma 支持</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">Drizzle 支持</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">适用场景</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">PostgreSQL</td>
+              <td class="border border-slate-200 px-4 py-2">关系型</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 最佳支持</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 最佳支持</td>
+              <td class="border border-slate-200 px-4 py-2">通用首选，功能最全面</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">MySQL</td>
+              <td class="border border-slate-200 px-4 py-2">关系型</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 完整支持</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 完整支持</td>
+              <td class="border border-slate-200 px-4 py-2">传统项目、已有 MySQL 基础设施</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">SQLite</td>
+              <td class="border border-slate-200 px-4 py-2">嵌入式</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 支持</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 原生支持</td>
+              <td class="border border-slate-200 px-4 py-2">原型开发、小型项目、边缘计算</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">MongoDB</td>
+              <td class="border border-slate-200 px-4 py-2">文档型</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 支持</td>
+              <td class="border border-slate-200 px-4 py-2">❌ 不支持</td>
+              <td class="border border-slate-200 px-4 py-2">灵活 Schema、快速迭代</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">PlanetScale</td>
+              <td class="border border-slate-200 px-4 py-2">MySQL 兼容</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 支持</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 支持</td>
+              <td class="border border-slate-200 px-4 py-2">Serverless 无服务器数据库</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">Neon / Supabase</td>
+              <td class="border border-slate-200 px-4 py-2">PostgreSQL</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 原生支持</td>
+              <td class="border border-slate-200 px-4 py-2">✅ 原生支持</td>
+              <td class="border border-slate-200 px-4 py-2">Vercel 生态最佳搭配</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-medium">Redis</td>
+              <td class="border border-slate-200 px-4 py-2">KV 缓存</td>
+              <td class="border border-slate-200 px-4 py-2">❌ 不支持</td>
+              <td class="border border-slate-200 px-4 py-2">❌ 不支持</td>
+              <td class="border border-slate-200 px-4 py-2">缓存、会话、限流（用 ioredis）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">⚡ Server Action 直接操作数据库</h3>
+      <p class="text-slate-600 mb-3">Server Action 是 Next.js 推荐的表单提交方式，可以直接操作数据库，无需定义 API Route：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// app/posts/actions.ts
+'use server';
+
+import { prisma } from '@/lib/prisma';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+
+// 创建文章
+export async function createPost(formData: FormData) {
+  const title = formData.get('title') as string;
+  const content = formData.get('content') as string;
+  const authorId = formData.get('authorId') as string;
+
+  if (!title || !authorId) {
+    return { error: '标题和作者为必填项' };
+  }
+
+  await prisma.post.create({
+    data: {
+      title,
+      content: content || '',
+      authorId: Number(authorId),
+    },
+  });
+
+  // 刷新文章列表页面的缓存数据
+  revalidatePath('/posts');
+  redirect('/posts');
+}
+
+// 切换发布状态
+export async function togglePublish(postId: number) {
+  const post = await prisma.post.findUnique({ where: { id: postId } });
+  if (!post) return { error: '文章不存在' };
+
+  await prisma.post.update({
+    where: { id: postId },
+    data: { published: !post.published },
+  });
+
+  revalidatePath('/posts');
+  return { success: true };
+}</code></pre>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// app/posts/new/page.tsx — 使用 Server Action 的表单页面
+import { createPost } from '../actions';
+
+export default function NewPostPage() {
+  return (
+    &lt;form action={createPost} className="max-w-lg mx-auto space-y-4"&gt;
+      &lt;div&gt;
+        &lt;label&gt;标题&lt;/label&gt;
+        &lt;input name="title" type="text" required 
+          className="w-full border rounded px-3 py-2" /&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;label&gt;内容&lt;/label&gt;
+        &lt;textarea name="content" rows={6}
+          className="w-full border rounded px-3 py-2" /&gt;
+      &lt;/div&gt;
+      &lt;input type="hidden" name="authorId" value="1" /&gt;
+      &lt;button type="submit" 
+        className="bg-blue-600 text-white px-4 py-2 rounded"&gt;
+        发布文章
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🌐 Next.js + Vercel 推荐数据库方案</h3>
+      <p class="text-slate-600 mb-3">部署在 Vercel 上时，以下 Serverless 数据库有原生的连接优化：</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold mb-2">🐘 Neon</h4>
+          <p class="text-sm text-slate-600 mb-2">Serverless PostgreSQL，按需自动扩缩，支持分支数据库（类似 Git 分支）。Vercel 官方推荐。</p>
+          <pre class="bg-slate-900 text-white p-2 rounded text-xs overflow-x-auto"><code>DATABASE_URL="postgresql://user:pass@ep-xxx.us-east-2.aws.neon.tech/db?sslmode=require"</code></pre>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold mb-2">⚡ Supabase</h4>
+          <p class="text-sm text-slate-600 mb-2">开源 Firebase 替代品，基于 PostgreSQL，内置认证、实时订阅、存储。</p>
+          <pre class="bg-slate-900 text-white p-2 rounded text-xs overflow-x-auto"><code>DATABASE_URL="postgresql://postgres:pass@db.xxx.supabase.co:5432/postgres"</code></pre>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold mb-2">🚀 PlanetScale</h4>
+          <p class="text-sm text-slate-600 mb-2">MySQL 兼容的 Serverless 数据库，支持数据库分支和在线 Schema 变更。</p>
+          <pre class="bg-slate-900 text-white p-2 rounded text-xs overflow-x-auto"><code>DATABASE_URL="mysql://user:pass@aws.connect.psdb.cloud/db?sslaccept=strict"</code></pre>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold mb-2">📦 Upstash Redis</h4>
+          <p class="text-sm text-slate-600 mb-2">Serverless Redis，适合缓存、限流、会话管理。支持 HTTP API 连接。</p>
+          <pre class="bg-slate-900 text-white p-2 rounded text-xs overflow-x-auto"><code>import { Redis } from '@upstash/redis';
+const redis = new Redis({
+  url: 'https://xxx.upstash.io',
+  token: 'xxx',
+});</code></pre>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🛡️ 安全最佳实践</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="p-4 border border-red-100 bg-red-50 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-2">❌ 永远不要在客户端连接数据库</h4>
+          <p class="text-sm text-red-600">数据库凭据必须保持在服务端。使用 Server Component、Route Handler 或 Server Action，不要将数据库客户端引入 'use client' 组件。</p>
+        </div>
+        <div class="p-4 border border-red-100 bg-red-50 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-2">❌ 不要拼接 SQL 字符串</h4>
+          <p class="text-sm text-red-600">永远不要用字符串拼接构建 SQL 查询，这会导致 SQL 注入。始终使用 ORM 的参数化查询或 Prepared Statement。</p>
+        </div>
+        <div class="p-4 border border-green-100 bg-green-50 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">✅ 使用环境变量存储凭据</h4>
+          <p class="text-sm text-green-700">数据库连接字符串放在 <code class="bg-green-100 px-1 rounded">.env</code> 中，通过 <code class="bg-green-100 px-1 rounded">process.env.DATABASE_URL</code> 访问。</p>
+        </div>
+        <div class="p-4 border border-green-100 bg-green-50 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">✅ 实现查询限流</h4>
+          <p class="text-sm text-green-700">对数据库查询添加超时限制，防止慢查询阻塞整个应用。使用 <code class="bg-green-100 px-1 rounded">prisma.$transaction()</code> 设置超时。</p>
+        </div>
+        <div class="p-4 border border-green-100 bg-green-50 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">✅ 生产环境启用连接池</h4>
+          <p class="text-sm text-green-700">Serverless 环境数据库连接管理很重要。使用 <code class="bg-green-100 px-1 rounded">@prisma/client</code> 的 <code class="bg-green-100 px-1 rounded">connection_limit</code> 或 pgBouncer。</p>
+        </div>
+        <div class="p-4 border border-green-100 bg-green-50 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">✅ 敏感数据脱敏</h4>
+          <p class="text-sm text-green-700">查询用户数据时，使用 Prisma 的 <code class="bg-green-100 px-1 rounded">select</code> 或 <code class="bg-green-100 px-1 rounded">omit</code> 排除密码等敏感字段，确保不会意外泄露到前端。</p>
+        </div>
+      </div>
+
+      <div class="p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
+        <h4 class="font-semibold text-indigo-800 mb-2">🎯 总结</h4>
+        <ul class="list-disc pl-6 text-sm text-indigo-700 space-y-1">
+          <li><strong>ORM 首选 Prisma 或 Drizzle</strong>：前者生态成熟、开发体验好；后者性能极致、TypeScript 原生</li>
+          <li><strong>PostgreSQL 是首选数据库</strong>：功能最全面，Next.js + Vercel 生态中集成最完善</li>
+          <li><strong>Server Component 直接查库</strong>：比"前端 → API → 数据库"减少一层网络开销</li>
+          <li><strong>Server Action 处理写操作</strong>：表单提交、数据变更最优雅的方式，无需手动创建 API Route</li>
+          <li><strong>连接单例 + 环境变量</strong>：避免连接泄露和凭据泄露</li>
+        </ul>
+      </div>
+    `,
+  },
+  {
+    id: 14,
+    title: "中间件",
+    icon: "ShieldCheck",
+    content: `
+      <h2 class="text-2xl font-bold mb-4">Next.js 中间件（Middleware）</h2>
+      <p class="text-slate-600 mb-6">Middleware（中间件）是 Next.js 中一个强大的"门卫"机制，它在<strong>请求完成之前执行</strong>，可以拦截、修改请求，并根据逻辑返回重定向、重写或自定义响应。它运行在 <strong>Edge Runtime</strong>，延迟极低。</p>
+
+      <div class="mb-6 p-5 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-100 rounded-xl">
+        <h3 class="text-lg font-semibold text-purple-800 mb-3">🛡️ Middleware 的核心能力</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+          <div class="flex items-start gap-2">
+            <span class="text-purple-500 mt-0.5 text-lg">🔐</span>
+            <span class="text-slate-600"><strong>认证与授权</strong> — 在请求到达页面之前验证用户身份，未登录用户自动跳转登录页</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-purple-500 mt-0.5 text-lg">🌍</span>
+            <span class="text-slate-600"><strong>国际化路由</strong> — 根据请求的 Accept-Language 或 Cookie 自动重定向到对应语言版本</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-purple-500 mt-0.5 text-lg">🔀</span>
+            <span class="text-slate-600"><strong>A/B 测试与特性开关</strong> — 基于 Cookie 或请求头将流量分流到不同页面版本</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">📁 Middleware 文件位置</h3>
+      <p class="text-slate-600 mb-3">Middleware 必须是<strong>项目根级别</strong>的文件（或 <code class="bg-slate-100 px-1 rounded">src</code> 下），且只允许<strong>一个</strong>：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// ✅ 正确位置（二选一）
+// 1. 根目录
+// middleware.ts
+
+// 2. src 目录下
+// src/middleware.ts
+
+// ❌ 错误：不能放在 app 目录下
+// app/middleware.ts （不会生效）</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🏗️ 基础结构</h3>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  // 1. 获取请求信息
+  const { pathname } = request.nextUrl;
+  const country = request.geo?.country;      // 地理位置
+  const ip = request.ip;                     // 客户端 IP
+  
+  // 2. 业务逻辑判断
+  if (pathname.startsWith('/admin')) {
+    // 3. 返回响应：重定向 / 重写 / 返回 Response
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
+  
+  // 4. 继续请求（不拦截）
+  return NextResponse.next();
+}
+
+// 5. 配置匹配规则 — 决定哪些路径触发中间件
+export const config = {
+  matcher: ['/admin/:path*', '/dashboard/:path*'],
+};</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🔧 配置详解：matcher</h3>
+      <p class="text-slate-600 mb-3"><code class="bg-slate-100 px-1 rounded">matcher</code> 决定了哪些请求会经过中间件处理。精准的匹配规则可避免不必要的开销：</p>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">写法</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">含义</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">示例匹配</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">'/about'</td>
+              <td class="border border-slate-200 px-4 py-2">精确匹配单个路径</td>
+              <td class="border border-slate-200 px-4 py-2 text-slate-500">/about</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">'/about/:path*'</td>
+              <td class="border border-slate-200 px-4 py-2">匹配 /about 及其所有子路径</td>
+              <td class="border border-slate-200 px-4 py-2 text-slate-500">/about, /about/team, /about/team/1</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">'/dashboard/:path*'</td>
+              <td class="border border-slate-200 px-4 py-2">匹配 dashboard 及其子路由</td>
+              <td class="border border-slate-200 px-4 py-2 text-slate-500">/dashboard, /dashboard/settings</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">'/:path*'</td>
+              <td class="border border-slate-200 px-4 py-2"><span class="bg-red-100 text-red-700 px-1.5 py-0.5 rounded text-xs">匹配所有路径</span></td>
+              <td class="border border-slate-200 px-4 py-2 text-slate-500">全部请求</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">'/((?!api|_next|static).*)'</td>
+              <td class="border border-slate-200 px-4 py-2">排除 api、_next、static 开头的路径</td>
+              <td class="border border-slate-200 px-4 py-2 text-slate-500">除静态资源外的所有页面</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg mb-4">
+        <h5 class="font-semibold text-amber-800 text-sm mb-1">⚠️ matcher 注意事项</h5>
+        <ul class="list-disc pl-6 text-xs text-amber-700 space-y-1">
+          <li>必须是<strong>常量数组</strong>，不能用变量或运行时计算的值</li>
+          <li>路径必须以 <code class="bg-amber-100 px-1 rounded">/</code> 开头</li>
+          <li>不支持 <code class="bg-amber-100 px-1 rounded">has</code> / <code class="bg-amber-100 px-1 rounded">missing</code>（要用条件判断写在函数体内）</li>
+          <li>值必须用单引号括起来（<code class="bg-amber-100 px-1 rounded">'path'</code> 而非 <code class="bg-amber-100 px-1 rounded">"path"</code>）</li>
+        </ul>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🔐 实战一：认证守卫</h3>
+      <p class="text-slate-600 mb-3">最常见的中间件场景 — 根据 Cookie/Token 判断用户是否已登录：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// middleware.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+// 1. 定义需要保护的路径
+const protectedRoutes = ['/dashboard', '/profile', '/settings'];
+const authRoutes = ['/login', '/register'];
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  
+  // 2. 读取 Token（Cookie 或 Header）
+  const token = request.cookies.get('token')?.value 
+    || request.headers.get('Authorization')?.replace('Bearer ', '');
+
+  const isAuthenticated = !!token; // 实际项目中应验证 Token 有效性
+
+  // 3. 访问受保护路径但未登录 → 跳转登录页
+  if (protectedRoutes.some(route => pathname.startsWith(route)) && !isAuthenticated) {
+    const loginUrl = new URL('/login', request.url);
+    loginUrl.searchParams.set('callbackUrl', pathname); // 登录后回跳
+    return NextResponse.redirect(loginUrl);
+  }
+
+  // 4. 已登录却访问登录/注册页 → 跳转首页
+  if (authRoutes.some(route => pathname.startsWith(route)) && isAuthenticated) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: [
+    '/dashboard/:path*',
+    '/profile/:path*',
+    '/settings/:path*',
+    '/login',
+    '/register',
+  ],
+};</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🌍 实战二：国际化（i18n）路由</h3>
+      <p class="text-slate-600 mb-3">根据浏览器的语言偏好自动跳转到对应语言路径：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// middleware.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+// 支持的语言
+const locales = ['zh-CN', 'en', 'ja', 'ko'];
+const defaultLocale = 'zh-CN';
+
+function getLocale(request: NextRequest): string {
+  // 1. Cookie 中手动选择的语言优先级最高
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
+  if (cookieLocale && locales.includes(cookieLocale)) {
+    return cookieLocale;
+  }
+
+  // 2. Accept-Language 请求头
+  const acceptLanguage = request.headers.get('accept-language') || '';
+  for (const lang of acceptLanguage.split(',')) {
+    const code = lang.split(';')[0].trim();
+    if (locales.includes(code)) return code;
+    if (locales.includes(code.substring(0, 2))) return code.substring(0, 2);
+  }
+
+  // 3. 兜底默认语言
+  return defaultLocale;
+}
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // 检查路径是否已包含语言前缀
+  const pathnameHasLocale = locales.some(
+    locale => pathname.startsWith(\`/\${locale}/\`) || pathname === \`/\${locale}\`
+  );
+
+  if (pathnameHasLocale) return NextResponse.next();
+
+  // 自动重定向到对应语言路径
+  const locale = getLocale(request);
+  const newUrl = new URL(\`/\${locale}\${pathname}\`, request.url);
+  
+  const response = NextResponse.redirect(newUrl);
+  response.cookies.set('NEXT_LOCALE', locale);
+  return response;
+}
+
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+};</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🧪 实战三：A/B 测试分流</h3>
+      <p class="text-slate-600 mb-3">基于 Cookie 将用户分配到不同版本页面，用于测试新功能效果：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// middleware.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+// A/B 测试配置
+const AB_CONFIG = {
+  experimentName: 'new-landing-page',
+  variants: ['control', 'variant-a'] as const,
+  cookieName: 'ab_experiment',
+};
+
+function getOrAssignVariant(request: NextRequest): string {
+  // 已有分配，保持不变
+  const existing = request.cookies.get(AB_CONFIG.cookieName)?.value;
+  if (existing && AB_CONFIG.variants.includes(existing as any)) {
+    return existing;
+  }
+  // 随机分配（50%/50%）
+  return Math.random() < 0.5 ? 'control' : 'variant-a';
+}
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // 只在首页做 A/B 测试
+  if (pathname !== '/') return NextResponse.next();
+
+  const variant = getOrAssignVariant(request);
+
+  if (variant === 'variant-a') {
+    // 重写到新版本页面
+    const url = request.nextUrl.clone();
+    url.pathname = '/landing-v2'; // 实验组看到的页面
+    const response = NextResponse.rewrite(url);
+    response.cookies.set(AB_CONFIG.cookieName, variant, {
+      maxAge: 60 * 60 * 24 * 30, // 30 天保持一致性
+      httpOnly: true,
+    });
+    return response;
+  }
+
+  // control 组：正常走原始页面，不做处理
+  const response = NextResponse.next();
+  response.cookies.set(AB_CONFIG.cookieName, variant, {
+    maxAge: 60 * 60 * 24 * 30,
+    httpOnly: true,
+  });
+  return response;
+}
+
+export const config = {
+  matcher: '/',
+};</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🛡️ 实战四：安全头注入与 Bot 拦截</h3>
+      <p class="text-slate-600 mb-3">为所有响应统一添加安全头，同时拦截恶意爬虫：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// middleware.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+// 恶意 UA 黑名单
+const BLOCKED_USER_AGENTS = [
+  'HeadlessChrome',
+  'scraper',
+  'python-requests',
+  'curl',
+];
+
+// 安全头配置
+const SECURITY_HEADERS: Record&lt;string, string&gt; = {
+  'X-Frame-Options': 'DENY',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'X-XSS-Protection': '1; mode=block',
+};
+
+export function middleware(request: NextRequest) {
+  const userAgent = request.headers.get('user-agent')?.toLowerCase() || '';
+
+  // Bot 检测：拦截恶意爬虫
+  if (BLOCKED_USER_AGENTS.some(bot => userAgent.includes(bot.toLowerCase()))) {
+    return new NextResponse('Forbidden', { status: 403 });
+  }
+
+  // 正常请求：注入安全头
+  const response = NextResponse.next();
+
+  Object.entries(SECURITY_HEADERS).forEach(([key, value]) => {
+    response.headers.set(key, value);
+  });
+
+  // 配置 CSP（Content Security Policy）
+  response.headers.set(
+    'Content-Security-Policy',
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;"
+  );
+
+  return response;
+}
+
+export const config = {
+  matcher: '/((?!api).*)', // 不拦截 API 路由
+};</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">📊 NextResponse API 完整参考</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100">
+              <th class="border border-slate-200 px-4 py-2 text-left">方法</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">作用</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">HTTP 状态码</th>
+              <th class="border border-slate-200 px-4 py-2 text-left">典型场景</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">NextResponse.next()</td>
+              <td class="border border-slate-200 px-4 py-2">放行，继续处理请求</td>
+              <td class="border border-slate-200 px-4 py-2">—</td>
+              <td class="border border-slate-200 px-4 py-2">仅需读取/修改 headers</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">NextResponse.redirect(url)</td>
+              <td class="border border-slate-200 px-4 py-2">重定向到新 URL</td>
+              <td class="border border-slate-200 px-4 py-2">307（临时）</td>
+              <td class="border border-slate-200 px-4 py-2">登录跳转、语言跳转</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">NextResponse.rewrite(url)</td>
+              <td class="border border-slate-200 px-4 py-2">内部重写，URL 不变</td>
+              <td class="border border-slate-200 px-4 py-2">—</td>
+              <td class="border border-slate-200 px-4 py-2">A/B 测试、代理、子路径托管</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">NextResponse.json(body)</td>
+              <td class="border border-slate-200 px-4 py-2">返回 JSON 响应</td>
+              <td class="border border-slate-200 px-4 py-2">200</td>
+              <td class="border border-slate-200 px-4 py-2">API 拦截、健康检查</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 px-4 py-2 font-mono text-xs">new NextResponse(body)</td>
+              <td class="border border-slate-200 px-4 py-2">返回自定义响应</td>
+              <td class="border border-slate-200 px-4 py-2">自定义</td>
+              <td class="border border-slate-200 px-4 py-2">拦截返回 403/404/429</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">⚡ 实战五：限流（Rate Limiting）</h3>
+      <p class="text-slate-600 mb-3">在 Edge Runtime 中实现轻量级限流，保护 API 路由：</p>
+      <pre class="bg-slate-900 text-white p-4 rounded text-sm overflow-x-auto mb-4"><code>// middleware.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+// 简单的内存限流器（适合单实例 / Demo）
+// 生产环境推荐 Upstash Redis 或 Vercel KV
+const rateLimitMap = new Map&lt;string, { count: number; resetTime: number }&gt;();
+
+const RATE_LIMIT = 10;      // 窗口内最大请求数
+const WINDOW_MS = 60_000;    // 窗口 60 秒
+
+export function middleware(request: NextRequest) {
+  // 只对 API 路由限流
+  if (!request.nextUrl.pathname.startsWith('/api')) {
+    return NextResponse.next();
+  }
+
+  const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+  const now = Date.now();
+
+  // 获取或初始化该 IP 的限流记录
+  let record = rateLimitMap.get(ip);
+  if (!record || now > record.resetTime) {
+    record = { count: 0, resetTime: now + WINDOW_MS };
+    rateLimitMap.set(ip, record);
+  }
+
+  record.count++;
+
+  // 设置限流头
+  const response = record.count > RATE_LIMIT
+    ? new NextResponse('Too Many Requests', {
+        status: 429,
+        headers: {
+          'Retry-After': String(Math.ceil((record.resetTime - now) / 1000)),
+        },
+      })
+    : NextResponse.next();
+
+  response.headers.set('X-RateLimit-Limit', String(RATE_LIMIT));
+  response.headers.set('X-RateLimit-Remaining', String(Math.max(0, RATE_LIMIT - record.count)));
+  response.headers.set('X-RateLimit-Reset', String(Math.ceil(record.resetTime / 1000)));
+
+  return response;
+}
+
+export const config = {
+  matcher: '/api/:path*',
+};</code></pre>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">⚙️ Edge Runtime 约束</h3>
+      <p class="text-slate-600 mb-3">Middleware 运行在 <strong>Edge Runtime</strong>，与 Node.js 环境有显著差异：</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="p-4 border border-green-100 bg-green-50 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">✅ 支持的操作</h4>
+          <ul class="list-disc pl-6 text-sm text-green-700 space-y-1">
+            <li>读取/设置 Cookie</li>
+            <li>读取/设置 Headers</li>
+            <li>URL 重定向/重写</li>
+            <li><code class="bg-green-100 px-1 rounded">fetch</code> 请求外部 API</li>
+            <li>读取 <code class="bg-green-100 px-1 rounded">geo</code>、<code class="bg-green-100 px-1 rounded">ip</code></li>
+            <li>简单的字符串/对象判断</li>
+          </ul>
+        </div>
+        <div class="p-4 border border-red-100 bg-red-50 rounded-lg">
+          <h4 class="font-semibold text-red-800 mb-2">❌ 不支持的操作</h4>
+          <ul class="list-disc pl-6 text-sm text-red-700 space-y-1">
+            <li>Node.js 原生模块（<code class="bg-red-100 px-1 rounded">fs</code>、<code class="bg-red-100 px-1 rounded">net</code>、<code class="bg-red-100 px-1 rounded">crypto</code>）</li>
+            <li>直接操作数据库（应通过 API 转发）</li>
+            <li><code class="bg-red-100 px-1 rounded">process.env</code> 动态环境变量</li>
+            <li>长时间运行的同步操作</li>
+            <li><code class="bg-red-100 px-1 rounded">eval</code> / <code class="bg-red-100 px-1 rounded">new Function</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">🔄 中间件执行流程图</h3>
+      <div class="p-6 bg-white border border-slate-200 rounded-lg mb-6">
+        <div class="flex flex-col items-center gap-3 text-sm">
+          <div class="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold w-full text-center">🌐 用户请求</div>
+          <div class="text-slate-400 text-lg">⬇️</div>
+          <div class="bg-purple-500 text-white px-6 py-3 rounded-lg font-semibold w-full text-center">🛡️ Middleware（Edge Runtime）<br/><span class="text-xs font-normal opacity-90">认证 / 重定向 / 重写 / 限流 / Headers</span></div>
+          <div class="text-slate-400 text-lg">⬇️</div>
+          <div class="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold w-full text-center">📄 页面 / API Route（Node.js Runtime）</div>
+          <div class="text-slate-400 text-lg">⬇️</div>
+          <div class="bg-slate-700 text-white px-6 py-3 rounded-lg font-semibold w-full text-center">✅ 响应返回</div>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-semibold mt-6 mb-3">💡 最佳实践</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold mb-2">🎯 精准匹配，避免全量拦截</h4>
+          <p class="text-sm text-slate-600">不要用 <code class="bg-slate-100 px-1 rounded">/:path*</code> 匹配所有请求。精确的 <code class="bg-slate-100 px-1 rounded">matcher</code> 可避免对静态资源、<code class="bg-slate-100 px-1 rounded">_next</code> 文件的不必要拦截。</p>
+          <pre class="bg-slate-900 text-white p-2 rounded text-xs overflow-x-auto mt-2"><code>// ✅ 好：精确匹配
+matcher: ['/admin/:path*', '/dashboard/:path*']
+
+// ❌ 差：全量匹配（影响性能）
+matcher: '/:path*'</code></pre>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold mb-2">⚡ 保持轻量快速</h4>
+          <p class="text-sm text-slate-600">Middleware 在每次匹配请求时都执行，必须快速完成。避免复杂的计算和多次串行 <code class="bg-slate-100 px-1 rounded">fetch</code>，考虑缓存策略。</p>
+          <pre class="bg-slate-900 text-white p-2 rounded text-xs overflow-x-auto mt-2"><code>// ❌ 坏：串行多次 fetch
+const a = await fetch(url1);
+const b = await fetch(url2);  // 等待 a 完成
+
+// ✅ 好：并行 fetch
+const [a, b] = await Promise.all([
+  fetch(url1), fetch(url2)
+]);</code></pre>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold mb-2">🔍 善用条件判断前置</h4>
+          <p class="text-sm text-slate-600">尽早用 <code class="bg-slate-100 px-1 rounded">if</code> 排除不需要处理的路径，让大部分请求快速通过。</p>
+          <pre class="bg-slate-900 text-white p-2 rounded text-xs overflow-x-auto mt-2"><code>export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // 快速排除公共资源
+  if (pathname.startsWith('/public/')) return;
+  if (pathname.includes('.')) return; // 静态文件
+  
+  // 实际逻辑...
+}</code></pre>
+        </div>
+        <div class="p-4 border border-slate-200 rounded-lg">
+          <h4 class="font-semibold mb-2">🔄 避免在中间件中做数据变更</h4>
+          <p class="text-sm text-slate-600">Middleware 在 Edge Runtime 中没有持久化存储，不应直接写数据库。数据变更放到 Server Action 或 API Route 中。</p>
+          <pre class="bg-slate-900 text-white p-2 rounded text-xs overflow-x-auto mt-2"><code>// ❌ 不要在 middleware 中写数据库
+await db.posts.create(...)  // Edge 环境不可用
+
+// ✅ 通过 API Route 转发
+const res = await fetch('/api/log', { ... })</code></pre>
+        </div>
+      </div>
+
+      <div class="p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
+        <h4 class="font-semibold text-indigo-800 mb-2">🎯 总结</h4>
+        <ul class="list-disc pl-6 text-sm text-indigo-700 space-y-1">
+          <li><strong>Middleware 是请求的第一道防线</strong>：在页面/API 处理之前执行</li>
+          <li><strong>运行在 Edge Runtime</strong>：延迟极低，但也有使用限制（没有 Node.js API）</li>
+          <li><strong>核心场景</strong>：认证守卫、国际化路由、A/B 测试、安全头注入、限流</li>
+          <li><strong>精准 matcher</strong>：只拦截需要处理的路径，避免性能浪费</li>
+          <li><strong>保持轻量</strong>：Middleware 每次请求都执行，复杂逻辑移到 API Route 或 Server Action</li>
+          <li><strong>与 Server Action 职责分离</strong>：Middleware 负责"拦截和路由"，Server Action 负责"数据变更"</li>
         </ul>
       </div>
     `,
